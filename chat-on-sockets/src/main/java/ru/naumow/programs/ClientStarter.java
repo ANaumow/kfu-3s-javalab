@@ -1,7 +1,8 @@
-package ru.naumow.client;
+package ru.naumow.programs;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.naumow.client.ChatClient;
 import ru.naumow.common.dto.payloaders.GetMessagesCommandDto;
 import ru.naumow.common.dto.payloaders.LoginDto;
 import ru.naumow.common.dto.payloaders.LogoutDto;
