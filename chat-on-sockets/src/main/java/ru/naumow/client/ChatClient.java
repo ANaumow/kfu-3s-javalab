@@ -3,7 +3,7 @@ package ru.naumow.client;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import ru.naumow.common.dto.payloaders.MessageDto;
+import ru.naumow.common.dto.payloads.MessageDto;
 import ru.naumow.server.services.ServiceFactory;
 
 import java.io.BufferedReader;

@@ -5,10 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import ru.naumow.common.dto.Request;
-import ru.naumow.common.dto.payloaders.GetMessagesCommandDto;
-import ru.naumow.common.dto.payloaders.LoginDto;
-import ru.naumow.common.dto.payloaders.LogoutDto;
-import ru.naumow.common.dto.payloaders.MessageDto;
+import ru.naumow.common.dto.payloads.GetMessagesCommandDto;
+import ru.naumow.common.dto.payloads.LoginDto;
+import ru.naumow.common.dto.payloads.LogoutDto;
+import ru.naumow.common.dto.payloads.MessageDto;
 import ru.naumow.common.models.Message;
 import ru.naumow.common.models.User;
 import ru.naumow.server.services.ServiceFactory;
@@ -100,7 +100,7 @@ public class MultiClientServer {
                                         .setText("Welcome to the club!");
                                 Request request = new Request()
                                         .setHeader("Message")
-                                        .setPayloader(messageDto);
+                                        .setPayload(messageDto);
                                 writer.println(mapper.writeValueAsString(request));
                             } else {
                                 // if did not log in
@@ -110,7 +110,7 @@ public class MultiClientServer {
                                         .setText("Incorrect login or password");
                                 Request request = new Request()
                                         .setHeader("Message")
-                                        .setPayloader(messageDto);
+                                        .setPayload(messageDto);
                                 writer.println(mapper.writeValueAsString(request));
                             }
                         } else {

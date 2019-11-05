@@ -2,8 +2,8 @@ package ru.naumow.common.dto;
 
 public class Request {
 
-    private String header;
-    private Payloader payloader;
+    private String  header;
+    private Payload payload;
 
     public String getHeader() {
         return header;
@@ -14,12 +14,12 @@ public class Request {
         return this;
     }
 
-    public Payloader getPayloader() {
-        return payloader;
+    public Payload getPayload() {
+        return payload;
     }
 
-    public Request setPayloader(Payloader payloader) {
-        this.payloader = payloader;
+    public Request setPayload(Payload payload) {
+        this.payload = payload;
         return this;
     }
 }

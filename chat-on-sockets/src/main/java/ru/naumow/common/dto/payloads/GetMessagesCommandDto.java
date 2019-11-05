@@ -1,8 +1,8 @@
-package ru.naumow.common.dto.payloaders;
+package ru.naumow.common.dto.payloads;
 
-import ru.naumow.common.dto.CommandPayloader;
+import ru.naumow.common.dto.CommandPayload;
 
-public class GetMessagesCommandDto extends CommandPayloader<GetMessagesCommandDto> {
+public class GetMessagesCommandDto extends CommandPayload<GetMessagesCommandDto> {
 
     private Integer page;
     private Integer size;

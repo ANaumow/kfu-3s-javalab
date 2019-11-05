@@ -1,6 +1,6 @@
 package ru.naumow.common.dto;
 
-public abstract class CommandPayloader<T> extends Payloader {
+public abstract class CommandPayload<T> extends Payload {
 
     private String command;
 

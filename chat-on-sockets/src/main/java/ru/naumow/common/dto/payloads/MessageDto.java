@@ -1,8 +1,8 @@
-package ru.naumow.common.dto.payloaders;
+package ru.naumow.common.dto.payloads;
 
-import ru.naumow.common.dto.Payloader;
+import ru.naumow.common.dto.Payload;
 
-public class MessageDto extends Payloader {
+public class MessageDto extends Payload {
 
     private String login;
     private String text;

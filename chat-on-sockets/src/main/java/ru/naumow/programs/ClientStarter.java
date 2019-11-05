@@ -3,10 +3,10 @@ package ru.naumow.programs;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.naumow.client.ChatClient;
-import ru.naumow.common.dto.payloaders.GetMessagesCommandDto;
-import ru.naumow.common.dto.payloaders.LoginDto;
-import ru.naumow.common.dto.payloaders.LogoutDto;
-import ru.naumow.common.dto.payloaders.MessageDto;
+import ru.naumow.common.dto.payloads.GetMessagesCommandDto;
+import ru.naumow.common.dto.payloads.LoginDto;
+import ru.naumow.common.dto.payloads.LogoutDto;
+import ru.naumow.common.dto.payloads.MessageDto;
 import ru.naumow.common.dto.Request;
 
 import java.util.Scanner;
@@ -46,7 +46,7 @@ public class ClientStarter {
                             .setText(afterCommand);
                     request = new Request()
                             .setHeader("Message")
-                            .setPayloader(messageDto);
+                            .setPayload(messageDto);
                     break;
                 case "/login":
                     String[] loginData = afterCommand.split(" ");
@@ -56,7 +56,7 @@ public class ClientStarter {
                             .setPassword(loginData[1]);
                     request = new Request()
                             .setHeader("Login")
-                            .setPayloader(loginDto);
+                            .setPayload(loginDto);
                     break;
                 case "/get_messages":
                     String[] additionData = afterCommand.split(" ");
@@ -69,14 +69,14 @@ public class ClientStarter {
                             .setSize(size);
                     request = new Request()
                             .setHeader("Command")
-                            .setPayloader(getMessagesCDto);
+                            .setPayload(getMessagesCDto);
                     break;
                 case "/logout":
                     LogoutDto logoutDto = new LogoutDto()
                             .setLogin(name);
                     request = new Request()
                             .setHeader("Logout")
-                            .setPayloader(logoutDto);
+                            .setPayload(logoutDto);
                     break;
                 default:
                     System.out.println("can't recognize");

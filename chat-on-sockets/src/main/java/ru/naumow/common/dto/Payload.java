@@ -1,5 +1,5 @@
 package ru.naumow.common.dto;
 
-public abstract class Payloader {
+public abstract class Payload {
 
 }
