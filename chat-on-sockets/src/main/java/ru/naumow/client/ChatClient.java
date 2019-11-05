@@ -2,10 +2,8 @@ package ru.naumow.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import ru.naumow.common.dto.payloaders.MessageDto;
-import ru.naumow.common.models.User;
 import ru.naumow.server.services.ServiceFactory;
 
 import java.io.BufferedReader;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class ChatClient {
@@ -34,15 +31,6 @@ public class ChatClient {
 
     public void sendMessage(String message) {
         writer.println(message);
-    }
-
-    private String receiveMessage() {
-        try {
-            return reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     private Runnable receiveMessagesTask = () -> {
