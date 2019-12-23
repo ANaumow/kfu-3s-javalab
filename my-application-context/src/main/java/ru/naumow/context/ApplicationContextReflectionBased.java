@@ -1,6 +1,4 @@
-package ru.naumow.server.context;
-
-import org.reflections.Reflections;
+package ru.naumow.context;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -12,15 +10,17 @@ public class ApplicationContextReflectionBased implements ApplicationContext {
 
     public ApplicationContextReflectionBased() {
         this.components = new HashMap<>();
-        Reflections                     reflections   = new Reflections("ru.naumow");
+        MyReflections reflections = new MyReflections();
+        System.out.println(reflections.getSubTypesOf(Component.class));
         Set<Class<? extends Component>> allComponents = reflections.getSubTypesOf(Component.class);
         for (Class<? extends Component> componentClass : allComponents) {
-            try {
-                Component component = componentClass.getConstructor().newInstance();
-                components.put(component.getName(), component);
-            } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            if (!componentClass.isInterface())
+                try {
+                    Component component = componentClass.getConstructor().newInstance();
+                    components.put(component.getName(), component);
+                } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
         }
         List<Component> objectComponents = new ArrayList<>(components.values());
         for (Component objComponent1 : objectComponents) {
@@ -37,11 +37,17 @@ public class ApplicationContextReflectionBased implements ApplicationContext {
                 }
             }
         }
-        System.out.println("context is initialized");
-        System.out.println(components);
     }
 
+    @Override
     public <T> T getComponent(Class<T> componentType, String name) {
-        return (T) components.get(name);
+        return componentType.cast(components.get(name));
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicationContextReflectionBased{" +
+                "components=" + components +
+                '}';
     }
 }

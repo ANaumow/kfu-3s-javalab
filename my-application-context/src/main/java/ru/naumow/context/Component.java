@@ -1,5 +1,7 @@
-package ru.naumow.server.context;
+package ru.naumow.context;
 
 public interface Component {
+
     String getName();
+
 }
