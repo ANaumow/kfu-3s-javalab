@@ -22,10 +22,35 @@ public class ProductDto implements Dto {
         this.name = name;
     }
 
-    // TODO: вместо конструктора Builder
-    public ProductDto(Long id, String name) {
+    private ProductDto(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public static class Builder {
+        private Long   id;
+        private String name;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public ProductDto build() {
+            return new ProductDto(id, name);
+        }
+
     }
 
     @Override

@@ -7,5 +7,5 @@ public interface CrudRepository<T,ID> {
     
     ID save(T t);
 
-    // TODO add other methods
+    // other CRUD methods but they are not needed yet
 }
