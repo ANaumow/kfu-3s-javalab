@@ -1,6 +1,6 @@
 package ru.naumow.server.controllers;
 
-import ru.naumow.server.context.Component;
+import ru.naumow.context.Component;
 import ru.naumow.server.dto.ListDto;
 import ru.naumow.server.dto.ProductDto;
 import ru.naumow.server.protocol.jwt.JwtRequest;

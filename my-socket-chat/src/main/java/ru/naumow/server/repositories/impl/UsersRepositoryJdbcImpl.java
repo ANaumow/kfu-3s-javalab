@@ -1,6 +1,6 @@
 package ru.naumow.server.repositories.impl;
 
-import ru.naumow.server.context.Component;
+import ru.naumow.context.Component;
 import ru.naumow.server.models.User;
 import ru.naumow.server.repositories.RowMapper;
 import ru.naumow.server.repositories.UsersRepository;

@@ -1,7 +1,7 @@
 package ru.naumow.server.repositories.connection;
 
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
-import ru.naumow.server.context.Component;
+import ru.naumow.context.Component;
 
 public class MysqlConnectionPool extends MysqlConnectionPoolDataSource implements Component {
 

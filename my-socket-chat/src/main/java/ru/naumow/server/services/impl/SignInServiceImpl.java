@@ -2,7 +2,7 @@ package ru.naumow.server.services.impl;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.naumow.server.context.Component;
+import ru.naumow.context.Component;
 import ru.naumow.server.dto.UserDto;
 import ru.naumow.server.models.User;
 import ru.naumow.server.repositories.UsersRepository;

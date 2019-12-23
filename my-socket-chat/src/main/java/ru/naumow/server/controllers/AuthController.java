@@ -1,6 +1,7 @@
 package ru.naumow.server.controllers;
 
-import ru.naumow.server.context.Component;
+//import ru.naumow.server.context.Component;
+import ru.naumow.context.Component;
 import ru.naumow.server.dto.TokenDto;
 import ru.naumow.server.dto.UserDto;
 import ru.naumow.server.protocol.jwt.JwtRequest;

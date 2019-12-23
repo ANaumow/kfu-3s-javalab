@@ -1,6 +1,6 @@
 package ru.naumow.server.services.impl;
 
-import ru.naumow.server.context.Component;
+import ru.naumow.context.Component;
 import ru.naumow.server.dto.ListDto;
 import ru.naumow.server.dto.ProductDto;
 import ru.naumow.server.models.Product;

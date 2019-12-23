@@ -1,7 +1,7 @@
 package ru.naumow.server;
 
-import ru.naumow.server.context.ApplicationContext;
-import ru.naumow.server.context.ApplicationContextReflectionBased;
+import ru.naumow.context.ApplicationContext;
+import ru.naumow.context.ApplicationContextReflectionBased;
 import ru.naumow.server.controllers.AuthController;
 import ru.naumow.server.controllers.ProductController;
 import ru.naumow.server.protocol.RequestsHandler;
