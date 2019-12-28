@@ -1,6 +1,7 @@
 package ru.naumow.repositories.impl;
 
 import ru.naumow.connection.MysqlConnectionPool;
+import ru.naumow.context.ApplicationContext;
 import ru.naumow.context.Component;
 import ru.naumow.models.Product;
 import ru.naumow.repositories.ProductRepository;
@@ -140,5 +141,10 @@ public class ProductRepositoryJdbcImpl implements ProductRepository, Component {
     @Override
     public String getName() {
         return "productRepository";
+    }
+
+    @Override
+    public void saveContext(ApplicationContext context) {
+        this.connectionPool = context.getAttribute("connectionPool");
     }
 }

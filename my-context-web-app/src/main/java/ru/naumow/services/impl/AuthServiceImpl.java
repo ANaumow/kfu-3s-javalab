@@ -11,10 +11,12 @@ import ru.naumow.services.AuthService;
 import java.util.Optional;
 
 public class AuthServiceImpl implements AuthService, Component {
+
     private UsersRepository usersRepository;
 
     @Override
     public UserDto signIn(String login, String password) {
+        System.out.println(usersRepository);
         Optional<User> userCandidate = usersRepository.findByLogin(login);
         if (userCandidate.isPresent()) {
             User user = userCandidate.get();

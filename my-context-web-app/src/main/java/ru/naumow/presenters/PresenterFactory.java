@@ -25,7 +25,7 @@ public class PresenterFactory {
         this.templates.put("products", "./freemarker/product.ftl");*/
     }
 
-    public void configure(String propertiesPath) {
+    public void loadProperties(String propertiesPath) {
         File properties = new File(propertiesPath);
         System.out.println("property file is: " + properties);
         try {

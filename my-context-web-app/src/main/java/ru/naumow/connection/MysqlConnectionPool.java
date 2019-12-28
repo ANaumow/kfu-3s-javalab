@@ -3,7 +3,12 @@ package ru.naumow.connection;
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import ru.naumow.context.Component;
 
-public class MysqlConnectionPool extends MysqlConnectionPoolDataSource implements Component {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class MysqlConnectionPool extends MysqlConnectionPoolDataSource{
 
     public MysqlConnectionPool() {
         try {
@@ -11,13 +16,18 @@ public class MysqlConnectionPool extends MysqlConnectionPoolDataSource implement
         } catch (ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
-        this.setUrl("jdbc:mysql://localhost:3306/javalab_chat?serverTimezone=Europe/Moscow");
-        this.setUser("root");
-        this.setPassword("12345");
     }
 
-    @Override
-    public String getName() {
-        return "mysqlConnectionPool";
+    public void loadProperties(String propertiesPath) {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(new File(propertiesPath)));
+            this.setUrl(properties.getProperty("url"));
+            this.setUser(properties.getProperty("user"));
+            this.setPassword(properties.getProperty("password"));
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
     }
+
 }

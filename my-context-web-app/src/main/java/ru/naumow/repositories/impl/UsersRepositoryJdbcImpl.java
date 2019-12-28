@@ -1,6 +1,7 @@
 package ru.naumow.repositories.impl;
 
 import ru.naumow.connection.MysqlConnectionPool;
+import ru.naumow.context.ApplicationContext;
 import ru.naumow.context.Component;
 import ru.naumow.models.User;
 import ru.naumow.repositories.RowMapper;
@@ -100,4 +101,10 @@ public class UsersRepositoryJdbcImpl implements UsersRepository, Component {
                 "ru.naumow.connection=" + connectionPool +
                 '}';
     }
+
+    @Override
+    public void saveContext(ApplicationContext context) {
+        this.connectionPool = context.getAttribute("connectionPool");
+    }
+
 }
