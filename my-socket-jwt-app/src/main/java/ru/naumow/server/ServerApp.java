@@ -19,6 +19,7 @@ public class ServerApp implements Runnable {
     public void run() {
         String tokenSecret = "I like pizza";
         ApplicationContext context = new ApplicationContextReflectionBased();
+        context.setAttribute("secret", tokenSecret);
         ProductController productController
                 = context.getComponent(ProductController.class, "productController");
         AuthController authController
@@ -27,6 +28,6 @@ public class ServerApp implements Runnable {
                 = new JwtRequestsHandler(new JwtRequestsDispatcher(productController, authController));
         Server server
                 = new Server(requestsHandler, new JsonParserJacksonBased(new JwtTokenCoderAuth0Based(tokenSecret)));
-        server.start(7320);
+        server.start(7321);
     }
 }

@@ -17,7 +17,7 @@ public class Server {
 
     private List<ClientHandler> clients;
 
-    private RequestsHandler<Request, Response> requestsHandler;
+    private RequestsHandler<? extends Request, ? extends Response> requestsHandler;
 
     private StringParser<Request, Response> stringParser;
 
@@ -25,7 +25,7 @@ public class Server {
             RequestsHandler<? extends Request, ? extends Response> requestsHandler,
             StringParser<? extends Request, ? extends Response> stringParser) {
         this.stringParser = (StringParser<Request, Response>) stringParser;
-        this.requestsHandler = (RequestsHandler<Request, Response>) requestsHandler;
+        this.requestsHandler = requestsHandler;
         // Список для работы с многопоточностью
         this.clients = new CopyOnWriteArrayList<>();
     }
@@ -76,7 +76,7 @@ public class Server {
                         System.out.println("new request");
                         System.out.println(inputLine);
                         Request request = stringParser.buildRequest(inputLine);
-                        Response response = requestsHandler.handleRequest(request);
+                        Response response = ((RequestsHandler<Request,Response>)requestsHandler).handleRequest(request);
                         this.toClient.println(stringParser.toJson(response));
                         System.out.println("response is " + stringParser.toJson(response));
                     }

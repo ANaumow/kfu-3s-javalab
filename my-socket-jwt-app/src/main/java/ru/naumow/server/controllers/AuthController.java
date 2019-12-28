@@ -1,6 +1,7 @@
 package ru.naumow.server.controllers;
 
 //import ru.naumow.server.context.Component;
+import ru.naumow.context.ApplicationContext;
 import ru.naumow.context.Component;
 import ru.naumow.server.dto.TokenDto;
 import ru.naumow.server.dto.UserDto;
@@ -14,13 +15,16 @@ public class AuthController implements Component {
 
     private SignInService signInService;
 
+    private ApplicationContext context;
+
     public void signIn(JwtRequest request, JwtResponse response) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         UserDto userDto = signInService.signIn(login, password);
         String sub = userDto.getId().toString();
         String rol = userDto.getRole();
-        JwtTokenCoder tokenCoder = new JwtTokenCoderAuth0Based("i like pizza");
+        String secret = context.getAttribute("secret");
+        JwtTokenCoder tokenCoder = new JwtTokenCoderAuth0Based(secret);
         String token = tokenCoder.encode(sub, rol);
         response.setData(new TokenDto(token));
     }
@@ -30,4 +34,8 @@ public class AuthController implements Component {
         return "authController";
     }
 
+    @Override
+    public void saveContext(ApplicationContext context) {
+        this.context = context;
+    }
 }
