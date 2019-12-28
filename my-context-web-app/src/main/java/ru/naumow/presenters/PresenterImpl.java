@@ -8,11 +8,11 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PresenterPro implements Presenter {
+public class PresenterImpl implements Presenter {
     private Template            template;
     private Map<String, Object> root;
 
-    public PresenterPro(Template template) {
+    public PresenterImpl(Template template) {
         this.root = new HashMap<>();
         this.template = template;
     }

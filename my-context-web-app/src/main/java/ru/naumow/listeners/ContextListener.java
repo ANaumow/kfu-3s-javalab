@@ -14,7 +14,9 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ApplicationContext context = new ApplicationContextReflectionBased();
-        context.setAttribute("presenterFactory", new PresenterFactory(sce.getServletContext()));
+        PresenterFactory factory = new PresenterFactory(sce.getServletContext());
+        factory.configure(sce.getServletContext().getRealPath("templates.properties"));
+        context.setAttribute("presenterFactory", factory);
         sce.getServletContext().setAttribute("appContext", context);
     }
 }

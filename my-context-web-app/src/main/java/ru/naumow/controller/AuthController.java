@@ -22,7 +22,7 @@ public class AuthController extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        ApplicationContext context = (ApplicationContext) getServletContext().getAttribute("appContext");
+        ApplicationContext context = (ApplicationContext) config.getServletContext().getAttribute("appContext");
         this.signInService = context.getComponent(SignInService.class, "signInService");
         this.presenterFactory = context.getAttribute("presenterFactory");
     }
@@ -44,9 +44,9 @@ public class AuthController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/sign_in" + "?status=incorrect");
             return;
         }
-        req.getSession().setAttribute("user_id", userDto.getId());
-        req.getSession().setAttribute("role", userDto.getRole());
-        req.getSession().setAttribute("user_name", userDto.getLogin());
+        req.getSession(true).setAttribute("user_id", userDto.getId());
+        req.getSession(true).setAttribute("role", userDto.getRole());
+        req.getSession(true).setAttribute("user_login", userDto.getLogin());
         resp.sendRedirect(req.getContextPath() + "/products");
     }
 

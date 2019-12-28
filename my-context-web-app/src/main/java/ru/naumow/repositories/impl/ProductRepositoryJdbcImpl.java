@@ -1,4 +1,4 @@
-package ru.naumow.impl;
+package ru.naumow.repositories.impl;
 
 import ru.naumow.connection.MysqlConnectionPool;
 import ru.naumow.context.Component;
