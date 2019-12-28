@@ -26,10 +26,6 @@ public class Client {
         this.clientMessageListeners = new CopyOnWriteArrayList<>();
     }
 
-    public void addMessageListener(ClientMessageListener listener) {
-        this.clientMessageListeners.add(listener);
-    }
-
     // начало сессии - получаем ip-сервера и его порт
     public void startConnection(String ip, int port) {
         try {
