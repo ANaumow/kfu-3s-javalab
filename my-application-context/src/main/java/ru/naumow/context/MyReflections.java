@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class MyReflections {
 
     @SuppressWarnings("unchecked")
-    public  <T> Set<Class<? extends T>> getSubTypesOf(Class<T> tClass) {
+    public <T> Set<Class<? extends T>> getSubTypesOf(Class<T> tClass) {
         return getAllClasses().stream()
                 .filter(tClass::isAssignableFrom)
                 .map(x -> (Class<? extends T>) x)
@@ -24,7 +24,8 @@ public class MyReflections {
         for (Path path : allPaths) {
             try {
                 String relatedPath = getClass().getClassLoader().getResource("").toURI().relativize(path.toUri()).toString();
-                allClasses.add(Class.forName(pathToPackageName(removedEncoding(relatedPath))));
+                if (relatedPath.matches(".*.class$"))
+                    allClasses.add(Class.forName(pathToPackageName(removedEncoding(relatedPath))));
             } catch (URISyntaxException | ClassNotFoundException e) {
                 throw new IllegalStateException(e);
             }

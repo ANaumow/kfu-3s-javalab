@@ -7,8 +7,10 @@ import java.util.*;
 public class ApplicationContextReflectionBased implements ApplicationContext {
 
     private Map<String, Component> components;
+    private Map<String, Object> attributes;
 
     public ApplicationContextReflectionBased() {
+        this.attributes = new HashMap<>();
         this.components = new HashMap<>();
         MyReflections reflections = new MyReflections();
         System.out.println(reflections.getSubTypesOf(Component.class));
@@ -37,11 +39,23 @@ public class ApplicationContextReflectionBased implements ApplicationContext {
                 }
             }
         }
+        this.components.values().forEach(x -> x.saveContext(this));
     }
 
     @Override
     public <T> T getComponent(Class<T> componentType, String name) {
         return componentType.cast(components.get(name));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getAttribute(String key) {
+        return (T)this.attributes.get(key);
+    }
+
+    @Override
+    public void setAttribute(String key, Object value) {
+        this.attributes.put(key, value);
     }
 
     @Override
