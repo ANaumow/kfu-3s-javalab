@@ -10,10 +10,6 @@ import java.util.Date;
 
 @WebFilter("/*")
 public class LogFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -21,7 +17,6 @@ public class LogFilter implements Filter {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss");
         Date date = new Date();
-        //System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
 
         File logFile = new File(logDir.getAbsolutePath() + File.separator + "Log.txt");
         if (!logFile.exists())
@@ -34,16 +29,6 @@ public class LogFilter implements Filter {
         fileWriter.close();
 
         filterChain.doFilter(servletRequest, servletResponse);
-        //BufferedOutputStream fileInputStream = new BufferedOutputStream( new FileOutputStream(logFile));
-
-
-
-        //int count = ((int) ((HttpServletRequest) servletRequest).getSession(false).getAttribute("count"));
-
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }
