@@ -6,11 +6,11 @@ import ru.naumow.context.Component;
 import ru.naumow.dto.UserDto;
 import ru.naumow.models.User;
 import ru.naumow.repositories.UsersRepository;
-import ru.naumow.services.SignInService;
+import ru.naumow.services.AuthService;
 
 import java.util.Optional;
 
-public class SignInServiceImpl implements SignInService, Component {
+public class AuthServiceImpl implements AuthService, Component {
     private UsersRepository usersRepository;
 
     @Override
@@ -28,8 +28,20 @@ public class SignInServiceImpl implements SignInService, Component {
     }
 
     @Override
+    public void signUp(String login, String password) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode(password);
+        User user = new User.Builder()
+                .login(login)
+                .password(hashedPassword)
+                .role("user")
+                .build();
+        this.usersRepository.save(user);
+    }
+
+    @Override
     public String getName() {
-        return "signInService";
+        return "authService";
     }
 
     @Override

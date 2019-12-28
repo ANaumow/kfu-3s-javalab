@@ -1,13 +1,11 @@
 package ru.naumow.controller;
 
 import ru.naumow.context.ApplicationContext;
-import ru.naumow.dto.Dto;
 import ru.naumow.dto.ListDto;
 import ru.naumow.dto.ProductDto;
 import ru.naumow.presenters.Presenter;
 import ru.naumow.presenters.PresenterFactory;
 import ru.naumow.services.ProductService;
-import ru.naumow.services.SignInService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
